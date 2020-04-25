@@ -109,7 +109,7 @@ function variableInterestRate(p, ir, n) {
       mortgageCalculator(p, interest, n)
     )}`;
     console.log(text);
-    response += text + "<br>";
+    response += "<p>" + text + "</p>";
     interest = Math.round((interest + 0.005) * 1000) / 1000;
   }
   return response;
