@@ -101,8 +101,7 @@ For example, variableInterestRate(200000, 0.04, 30) should console.log:
 */
 
 function variableInterestRate(name, p, ir, n) {
-  const factor = 0.005 * 4;
-  let interest = ir - factor;
+  let interest = ir - 0.02;
   let response = "";
   for (let i = 0; i < 9; i++) {
     let text = `${name}, with an interest rate of ${interest}, your monthly rate is $${Math.round(
