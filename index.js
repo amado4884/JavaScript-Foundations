@@ -100,7 +100,7 @@ For example, variableInterestRate(200000, 0.04, 30) should console.log:
 "{Name}, with an interest rate of 0.06, your monthly rate is $1199"
 */
 
-function variableInterestRate(p, ir, n) {
+function variableInterestRate(name, p, ir, n) {
   const factor = 0.005 * 4;
   let interest = ir - factor;
   let response = "";
@@ -108,7 +108,6 @@ function variableInterestRate(p, ir, n) {
     let text = `${name}, with an interest rate of ${interest}, your monthly rate is $${Math.round(
       mortgageCalculator(p, interest, n)
     )}`;
-    console.log(text);
     response += "<p>" + text + "</p>";
     interest = Math.round((interest + 0.005) * 1000) / 1000;
   }
@@ -126,10 +125,12 @@ function variableInterestRate(p, ir, n) {
 
 /* 🏡 Explore using `window.prompt()` to allow a user to input parameters in the browser */
 function inputRates() {
+  const name = document.getElementById("name").value;
   const pr = Number(document.getElementById("principal").value);
   const ir = Number(document.getElementById("interestRate").value);
   const ny = Number(document.getElementById("years").value);
   document.getElementById("results").innerHTML = variableInterestRate(
+    name,
     pr,
     ir,
     ny
