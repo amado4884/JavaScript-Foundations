@@ -62,7 +62,7 @@ function mortgageCalculator(p, i, n) {
   return monthlyRate;
 }
 
-// console.log(mortgageCalculator(2000000, 0.05, 30));
+console.log(mortgageCalculator(200000, 0.05, 30));
 // 🏡 Task 5: Conditionals
 /* Add another paramter to your function called credit score. This parameter will be a number between 0 and 800 (a credit score).
 
@@ -101,15 +101,16 @@ For example, variableInterestRate(200000, 0.04, 30) should console.log:
 */
 
 function variableInterestRate(name, p, ir, n) {
-  let interest = ir - 0.02;
-  let response = "";
+  let interest = Math.round((ir - 0.02) * 1000) / 1000;
+  let response = `<div class='result'><h3>Here are your results, ${name}</h3>`;
   for (let i = 0; i < 9; i++) {
-    let text = `${name}, with an interest rate of ${interest}, your monthly rate is $${Math.round(
+    let text = `With an interest rate of ${interest}, your monthly rate is $${Math.round(
       mortgageCalculator(p, interest, n)
     )}`;
-    response += "<p>" + text + "</p>";
+    response += `<p>${text}</p>`;
     interest = Math.round((interest + 0.005) * 1000) / 1000;
   }
+  response += `</div>`;
   return response;
 }
 //variableInterestRate(200000, 0.04, 30);
@@ -128,12 +129,9 @@ function inputRates() {
   const pr = Number(document.getElementById("principal").value);
   const ir = Number(document.getElementById("interestRate").value);
   const ny = Number(document.getElementById("years").value);
-  document.getElementById("results").innerHTML = variableInterestRate(
-    name,
-    pr,
-    ir,
-    ny
-  );
+  const currentInfo = document.getElementById("results").innerHTML;
+  document.getElementById("results").innerHTML =
+    variableInterestRate(name, pr, ir, ny) + currentInfo;
 }
 
 /* 🏡  Refactor your `variableInterestRate()` function to accept an array of interest rates (make sure to copy and paste as to not lose your work!) */
